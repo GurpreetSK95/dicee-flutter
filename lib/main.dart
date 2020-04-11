@@ -29,36 +29,48 @@ class _DiceState extends State<DicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: FlatButton(
-              child: Image.asset("images/dice$firstDiceOutcome.png"),
-              onPressed: () {
-                setState(() {
-                  rollDice();
-                });
-              },
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: FlatButton(
+                child: Image.asset("images/dice$firstDiceOutcome.png"),
+                onPressed: () {},
+              ),
             ),
-          ),
-          Expanded(
-            child: FlatButton(
-              onPressed: () {
-                setState(() {
+            Expanded(
+              child: FlatButton(
+                onPressed: () {
                   rollDice();
-                });
-              },
-              child: Image.asset("images/dice$secondDiceOutcome.png"),
+                },
+                child: Image.asset("images/dice$secondDiceOutcome.png"),
+              ),
             ),
+          ],
+        ),
+        SizedBox(
+          height: 16.0,
+        ),
+        IconButton(
+          onPressed: () {
+            rollDice();
+          },
+          icon: Icon(
+            Icons.refresh,
+            color: Colors.white,
+            size: 32.0,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   void rollDice() {
-    firstDiceOutcome = random.nextInt(6) + 1;
-    secondDiceOutcome = random.nextInt(6) + 1;
+    setState(() {
+      firstDiceOutcome = random.nextInt(6) + 1;
+      secondDiceOutcome = random.nextInt(6) + 1;
+    });
   }
 }
